@@ -13,18 +13,20 @@ export default function Home() {
   const handleBenchmark = async (prompt) => {
     setError(null); // Reset error before new request
     setResults(null); // Clear previous results
-
+  
     try {
-      const response = await fetch("/api/benchmark", {
+      console.log("📤 Sending request to: /api/benchmark");
+  
+      const response = await fetch("/api/benchmark", { // ✅ Fix: Remove extra `/api/benchmark`
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ request: prompt }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to fetch benchmark results");
       }
-
+  
       const data = await response.json();
       setResults(data);
     } catch (error) {

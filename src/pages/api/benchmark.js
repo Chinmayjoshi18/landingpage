@@ -3,7 +3,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const API_URL = process.env.AVS_API_URL;
+  const API_URL = process.env.AVS_API_URL; // ✅ Ensure API URL is correctly defined
+
+  if (!API_URL) {
+    console.error("❌ Missing API_URL in environment variables!");
+    return res.status(500).json({ error: "API_URL is not set" });
+  }
 
   try {
     console.log("🔍 Forwarding request to backend API:", API_URL);
