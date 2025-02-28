@@ -19,10 +19,7 @@ export default function BenchmarkForm({ onSubmit }) {
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
-      <button
-        type="submit"
-        className="mt-4 px-6 py-2 bg-green-500 hover:bg-green-600 rounded"
-      >
+      <button type="submit" className="mt-4 px-6 py-2 bg-green-500 rounded">
         Run Benchmark
       </button>
     </form>

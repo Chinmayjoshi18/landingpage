@@ -21,10 +21,7 @@ export default function Header({ onConnect }) {
     <header className="w-full flex justify-between items-center p-4 bg-gray-900 text-white">
       <h1 className="text-xl font-bold">Semantix AVS Benchmarking</h1>
       {!account ? (
-        <button
-          onClick={connectWallet}
-          className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600"
-        >
+        <button onClick={connectWallet} className="px-4 py-2 bg-blue-500 rounded">
           Connect MetaMask
         </button>
       ) : (
