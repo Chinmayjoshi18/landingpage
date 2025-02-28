@@ -1,4 +1,4 @@
-export function BenchmarkResults({ results }) {
+export default function BenchmarkResults({ results }) {
   if (!results) return null;
 
   return (

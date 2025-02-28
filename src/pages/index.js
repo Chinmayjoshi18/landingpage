@@ -23,7 +23,7 @@ export default function Home() {
       <Header onConnect={setWallet} />
       <main className="w-full max-w-3xl mt-8 flex flex-col items-center">
         <BenchmarkForm onSubmit={handleBenchmark} />
-        <BenchmarkResults results={results} />
+        {results && <BenchmarkResults results={results} />}
       </main>
     </div>
   );
