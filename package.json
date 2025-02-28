@@ -13,5 +13,9 @@
     "react-dom": "latest",
     "tailwindcss": "latest",
     "ethers": "latest"
+  },
+  "devDependencies": {
+    "autoprefixer": "latest",
+    "postcss": "latest"
   }
 }

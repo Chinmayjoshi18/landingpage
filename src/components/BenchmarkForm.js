@@ -7,6 +7,7 @@ export default function BenchmarkForm({ onSubmit }) {
     e.preventDefault();
     if (prompt.trim() !== "") {
       onSubmit(prompt);
+      setPrompt(""); // Clear input after submission
     }
   };
 
@@ -14,12 +15,15 @@ export default function BenchmarkForm({ onSubmit }) {
     <form onSubmit={handleSubmit} className="w-full max-w-3xl flex flex-col items-center">
       <input
         type="text"
-        className="w-full p-3 bg-gray-800 rounded border border-gray-600 text-white"
+        className="w-full p-3 bg-gray-800 rounded border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
         placeholder="Enter a prompt..."
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
-      <button type="submit" className="mt-4 px-6 py-2 bg-green-500 rounded">
+      <button
+        type="submit"
+        className="mt-4 px-6 py-2 bg-green-500 hover:bg-green-600 rounded transition duration-200"
+      >
         Run Benchmark
       </button>
     </form>

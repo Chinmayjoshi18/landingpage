@@ -1,0 +1,40 @@
+# Node modules (Installed packages)
+node_modules/
+
+# Build Output (Next.js generated files)
+.next/
+out/
+
+# Environment Variables (Secret API Keys, Configurations)
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# Lock files (Managed by package managers)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Logs (Error, Debugging, System Logs)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+debug.log
+.DS_Store
+
+# Editor/IDE specific files (VS Code, JetBrains, etc.)
+.vscode/
+.idea/
+*.swp
+
+# MacOS system files
+Thumbs.db
+.DS_Store
+
+# Miscellaneous
+*.log
+*.bak
+*.tmp

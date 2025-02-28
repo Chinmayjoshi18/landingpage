@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_AVS_API_URL;
+const API_URL = process.env.AVS_API_URL;
 
 export const fetchBenchmarkResults = async (prompt) => {
   try {
