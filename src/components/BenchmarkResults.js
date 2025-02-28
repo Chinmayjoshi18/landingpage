@@ -1,6 +1,15 @@
 export default function BenchmarkResults({ results }) {
   if (!results) return null;
 
+  if (results.error) {
+    return (
+      <div className="mt-6 p-4 bg-red-600 rounded w-full text-center text-white">
+        <h3 className="text-xl font-semibold">Error</h3>
+        <p>{results.error}</p>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-6 p-4 bg-gray-800 rounded w-full text-center shadow-md">
       <h3 className="text-xl font-semibold text-blue-400">Benchmark Results</h3>
