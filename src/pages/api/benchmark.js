@@ -1,30 +1,25 @@
-import { useState } from "react";
-import Head from "next/head";
-import Header from "../components/Header";
-import BenchmarkForm from "../components/BenchmarkForm";
-import BenchmarkResults from "../components/BenchmarkResults";
-import { fetchBenchmarkResults } from "../utils/api";
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed" });
+  }
 
-export default function Benchmark() {
-  const [wallet, setWallet] = useState(null);
-  const [results, setResults] = useState(null);
+  const API_URL = process.env.AVS_API_URL;
 
-  const handleBenchmark = async (prompt) => {
-    const response = await fetchBenchmarkResults(prompt);
-    setResults(response);
-  };
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(req.body),
+    });
 
-  return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-6">
-      <Head>
-        <title>Semantix AVS Benchmarking</title>
-      </Head>
+    if (!response.ok) {
+      throw new Error("Failed to fetch data from AVS API");
+    }
 
-      <Header onConnect={setWallet} />
-      <main className="w-full max-w-3xl mt-8 flex flex-col items-center">
-        <BenchmarkForm onSubmit={handleBenchmark} />
-        <BenchmarkResults results={results} />
-      </main>
-    </div>
-  );
+    const data = await response.json();
+    res.status(200).json(data);
+  } catch (error) {
+    console.error("API Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 }
