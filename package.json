@@ -1,21 +1,17 @@
 {
-  "name": "semantix-avs-demo",
+  "name": "semantix-chat-app",
   "version": "1.0.0",
-  "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "tailwindcss": "latest",
-    "ethers": "latest"
-  },
-  "devDependencies": {
-    "autoprefixer": "latest",
-    "postcss": "latest"
+      "next": "latest",
+      "react": "latest",
+      "react-dom": "latest",
+      "tailwindcss": "latest",
+      "autoprefixer": "latest",
+      "postcss": "latest"
   }
 }
