@@ -1,7 +1,13 @@
+// src/components/ChatDisplay.tsx
 import React from 'react';
 import Message from './Message';
+import { Message as MessageType } from '../types/ChatTypes';
 
-const ChatDisplay = ({ messages }) => {
+interface ChatDisplayProps {
+    messages: MessageType[];
+}
+
+const ChatDisplay: React.FC<ChatDisplayProps> = ({ messages }) => {
     return (
         <div className="flex flex-col p-4 space-y-4">
             {messages.map((message, index) => (
