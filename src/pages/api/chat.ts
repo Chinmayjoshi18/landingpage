@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${process.env.API_KEY}`
             },
-            body: JSON.stringify({ request: req.body.request })
+            body: JSON.stringify({ request })
         });
 
         if (!response.ok) {
@@ -35,8 +35,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(200).json(data);
 
     } catch (error: unknown) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        console.error('API Route Error:', errorMessage);
+        if (error instanceof Error) {
+            console.error('API Route Error:', error.message);
+        } else {
+            console.error('API Route Error:', String(error));
+        }
         res.status(500).json({ error: 'Failed to fetch AI response' });
     }
 }
