@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const { request } = req.body;
 
         // Make the request to the external API
-        const response = await fetch('https://api.yourservice.com/endpoint', {
+        const response = await fetch('https://trtirhzavg.execute-api.us-east-1.amazonaws.com/prod/generate-response', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,20 +26,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
 
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error('External API Error:', errorText);
-            return res.status(response.status).json({ error: 'Failed to fetch from external API' });
+            console.error('External API Error:', await response.text());
+            return res.status(500).json({ error: 'Failed to fetch from external API' });
         }
 
         const data = await response.json();
-        res.status(200).json(data);
+        return res.status(200).json(data);
 
-    } catch (error: unknown) {
-        if (error instanceof Error) {
-            console.error('API Route Error:', error.message);
-        } else {
-            console.error('API Route Error:', String(error));
-        }
-        res.status(500).json({ error: 'Failed to fetch AI response' });
+    } catch (error) {
+        console.error('API Route Error:', error);
+        return res.status(500).json({ error: 'Failed to fetch AI response' });
     }
 }
