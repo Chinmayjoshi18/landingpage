@@ -12,14 +12,29 @@ const ChatPage = () => {
         const newMessage: Message = { text: input, isUser: true, time: new Date().toLocaleTimeString() };
         setMessages([...messages, newMessage]);
         
-        // Mock API response (Replace this with actual API call)
-        const responseMessage: Message = { 
-            text: 'Response from AI', 
-            isUser: false, 
-            time: new Date().toLocaleTimeString() 
-        };
-        
-        setMessages((prev) => [...prev, responseMessage]);
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ request: input }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch AI response');
+            }
+
+            const data = await response.json();
+
+            const responseMessage: Message = { 
+                text: data.response, 
+                isUser: false, 
+                time: new Date().toLocaleTimeString() 
+            };
+
+            setMessages((prev) => [...prev, responseMessage]);
+        } catch (error) {
+            console.error('Error fetching AI response:', error);
+        }
     };
 
     return (
