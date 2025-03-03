@@ -1,6 +1,11 @@
+// src/components/ConfidenceBar.tsx
 import React from 'react';
 
-const ConfidenceBar = ({ score }) => {
+interface ConfidenceBarProps {
+    score: number;
+}
+
+const ConfidenceBar: React.FC<ConfidenceBarProps> = ({ score }) => {
     return (
         <div className="w-full bg-gray-200 h-2 rounded">
             <div
