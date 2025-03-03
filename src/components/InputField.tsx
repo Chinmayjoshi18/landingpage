@@ -1,6 +1,11 @@
+// src/components/InputField.tsx
 import React, { useState } from 'react';
 
-const InputField = ({ onSend }) => {
+interface InputFieldProps {
+    onSend: (input: string) => void;
+}
+
+const InputField: React.FC<InputFieldProps> = ({ onSend }) => {
     const [input, setInput] = useState('');
 
     const handleSend = () => {
@@ -17,7 +22,7 @@ const InputField = ({ onSend }) => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="flex-grow p-2 border rounded-l"
-                placeholder="ask your question"
+                placeholder="Ask your question"
             />
             <button
                 onClick={handleSend}
